@@ -6,7 +6,7 @@
 /*   By: flo-dolc <flo-dolc@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 13:00:06 by flo-dolc          #+#    #+#             */
-/*   Updated: 2024/02/05 13:30:03 by flo-dolc         ###   ########.fr       */
+/*   Updated: 2024/02/15 01:45:17 by flo-dolc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 char	*read_from_file(int fd, char *leftover)
 {
 	char		*buffer;
+	char		*tmp;
 	ssize_t		bytes_read;
 
 	buffer = (char *) malloc(sizeof(char) * (BUFFER_SIZE + 1));
@@ -30,7 +31,11 @@ char	*read_from_file(int fd, char *leftover)
 			return (NULL);
 		}
 		buffer[bytes_read] = '\0';
-		leftover = ft_strjoin(leftover, buffer);
+		if (!leftover)
+			leftover = ft_strdup("");
+		tmp = leftover;
+		leftover = ft_strjoin(tmp, buffer);
+		free(tmp);
 	}
 	free(buffer);
 	return (leftover);
