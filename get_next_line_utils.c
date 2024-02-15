@@ -6,7 +6,7 @@
 /*   By: flo-dolc <flo-dolc@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 22:41:50 by flo-dolc          #+#    #+#             */
-/*   Updated: 2024/02/09 11:06:27 by flo-dolc         ###   ########.fr       */
+/*   Updated: 2024/02/15 01:39:13 by flo-dolc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,20 +25,18 @@ int	ft_strlen(const char *str)
 char	*ft_strchr(const char *str, int ch)
 {
 	int		i;
-	char	*caststr;
 
 	if (!str)
 		return (NULL);
 	i = 0;
-	caststr = (char *) str;
-	while (caststr[i])
+	while (str[i])
 	{
-		if (caststr[i] == (char) ch)
-			return (&caststr[i]);
+		if (str[i] == (char) ch)
+			return ((char *) &str[i]);
 		i++;
 	}
-	if (caststr[i] == (char) ch)
-		return (&caststr[i]);
+	if (str[i] == (char) ch)
+		return ((char *) &str[i]);
 	return (NULL);
 }
 
@@ -78,27 +76,22 @@ char	*ft_strjoin(const char *s1, const char *s2)
 {
 	char	*str;
 	int		i;
+	int		j;
 	int		size;
 
 	if (!s1 || !s2)
 		return (NULL);
 	i = 0;
+	j = 0;
 	size = ft_strlen(s1) + ft_strlen(s2);
 	str = (char *) malloc(sizeof(char) * size + 1);
 	if (!str)
 		return (NULL);
-	while (*s1)
-	{
-		str[i] = *s1;
-		i++;
-		s1++;
-	}
-	while (*s2)
-	{
-		str[i] = *s2;
-		i++;
-		s2++;
-	}
+	while (s1[j])
+		str[i++] = s1[j++];
+	j = 0;
+	while (s2[j])
+		str[i++] = s2[j++];
 	str[i] = '\0';
 	return (str);
 }
