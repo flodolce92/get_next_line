@@ -1,3 +1,8 @@
 # Get_next_line
 
-## This project is still *Work In Progress*.
+## 125/100
+
+**EVALUATED BY MOULINETTE**
+```
+basic_tests: GNL OK | bonus_tests: GNL OK
+```
